@@ -16,5 +16,5 @@ their desired sizes.
 # SCREEN SHOT
 ![screenshot](./screenshot.png "Zipper screen shot")
 
-<img src=https://media1.giphy.com/media/hDAl6KdJ5M8gnir1XS/giphy.gif>
+<img src="https://media1.giphy.com/media/hDAl6KdJ5M8gnir1XS/giphy.gif">
 
