@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="400.css">
+  </head>
+  <body>
+    <div class="container">
+      <h2>Oops! Access forbidden</h2>
+      <h1>403</h1>
+      <p><i>you are not allowed to enter here</i></p>
+      {% if current_user.is_authenticated %}
+      <a href="{{url_for('files.file')}}">Go back home</a>
+      {% else %}
+      <a href="{{url_for('main.home')}}">Go back home</a>
+      {% endif %}
+    </div>
+  </body>
+</html>

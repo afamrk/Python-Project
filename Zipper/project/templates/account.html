@@ -1,0 +1,160 @@
+{% extends 'file_base.html' %}
+{% block css %}
+<link rel='stylesheet' type='text/css' media='screen'href="{{url_for('static',filename='account.css')}}"> 
+{% endblock %}
+{% block content %}
+ <div class="allcontent my-4 text-align-center ">
+    <div class="col-xl-8 order-xl-1">
+      <form method="POST" enctype="multipart/form-data">
+        {{update_form.hidden_tag()}}
+      <div class="card bg-secondarys shadow">
+        <div class="card-header border-0">
+          <div class="rows align-items-center">
+            <div class="cols-8">
+              <div class="profile-pic-div"> 
+                <img src="{{url_for('static',filename='profile_pics/'+current_user.profile_pic)}}" id="photo">
+                {{update_form.profile_pic}}
+                <label for="file" id="uploadBtn">Change</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-5">
+            <br>
+            {% if update_form.profile_pic.errors %}
+                {% for error in update_form.profile_pic.errors %}
+                    <span class="text-danger">{{ error }}</span></br>
+                {% endfor %}
+            {% endif %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}" data-dismiss="alert">
+                    <center>{{ message }}</center>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pls-lg-4">
+              <div class="rows">
+                <div class="cols-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-username">Username</label>
+                    {% if update_form.username.errors %}
+                      {{ update_form.username}}
+                        <div class="invalid-feedback d-block">
+                            {% for error in update_form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                      {{ update_form.username }}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="cols-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    {% if update_form.email.errors %}
+                      {{ update_form.email}}
+                        <div class="invalid-feedback d-block">
+                            {% for error in update_form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                      {{ update_form.email}}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="rows">
+                <div class="cols-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-first-name">Current Password</label>
+                    {% if update_form.current_password.errors %}
+                      {{ update_form.current_password}}
+                        <div class="invalid-feedback d-block">
+                            {% for error in update_form.current_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                      {{ update_form.current_password}}
+                    {% endif %}
+                  </div>
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-first-name">New Password</label>
+                    {% if update_form.password.errors %}
+                      {{ update_form.password}}
+                        <div class="invalid-feedback d-block">
+                            {% for error in update_form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                      {{ update_form.password}}
+                    {% endif %}
+                  </div>
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-first-name">Confirm Password</label>
+                    {% if update_form.confirm_password.errors %}
+                      {{ update_form.confirm_password}}
+                        <div class="invalid-feedback d-block">
+                            {% for error in update_form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                      {{ update_form.confirm_password}}
+                    {% endif %}
+                  </div>
+
+                  {{update_form.submit}}
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const imgDiv = document.querySelector('.profile-pic-div');
+    const img = document.querySelector('#photo');
+    const file = document.querySelector('#file');
+    const uploadBtn = document.querySelector('#uploadBtn');
+
+
+    imgDiv.addEventListener('mouseenter', function () {
+      uploadBtn.style.display = "block";
+    });
+
+
+    imgDiv.addEventListener('mouseleave', function () {
+      uploadBtn.style.display = "none";
+    });
+
+
+
+    file.addEventListener('change', function () {
+      const choosedFile = this.files[0];
+
+      if (choosedFile) {
+
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function () {
+          img.setAttribute('src', reader.result);
+        });
+
+        reader.readAsDataURL(choosedFile);
+
+
+      }
+    });
+  </script>
+{% endblock %}

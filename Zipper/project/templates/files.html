@@ -1,0 +1,178 @@
+{% extends 'file_base.html' %}
+{% block css %}
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+{% endblock%}
+{% block content %}
+ <main><br>
+        <div class="mainTableContainer">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}" data-dismiss="alert">
+                    <center>{{ message }}</center>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            <div class="tableHeader">
+                <div class="leftCol">
+                    <input type="text" class="form-control" placeholder="Search Your Files">
+                    <button class="btn btn-secondary">Search</button>
+                </div>
+                <div class="rightCol">
+                    <a href="{{url_for('files.advanced')}}">
+                    <button class="btn btn-secondary"><i class="fas fa-sliders-h"></i>  Advanced</button>
+                    </a>
+                </div>
+            </div>
+            <div class="tableContainer">
+
+                <div class="tableHead">
+                    <div class="tableName">Name</div>
+                    <div class="tableSize"><center>Size</center></div>
+                    <div class="tableDate">Date Modified</div>
+                    <div class="tableMobMore">Option</div>
+                </div>
+            </div>
+            {% for file in files %}
+            {% if file.progress != "Finished" %}
+            <div class="tableBody ">
+                <div class="tableRow progressClass">
+                    <div class="tableBodyName">
+
+                        {% if file.progress == 'Virus' %}
+                            <div class="progress" style="height: 30px;">
+                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar"
+                                    style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    <b>Virus Detected</b>
+                                </div>
+                            </div>
+                        {% elif file.progress == 'Failed' %}
+                        <div class="progress" style="height: 30px;">
+                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar"
+                                    style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    <b>Failed</b>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="progress" style="height: 30px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                    style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    <b>{{ file.progress }}</b>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="nameIcon">
+                            <span class="{{file.content_type}}Icon"></span>
+                            <span id="tableBodyName"> {{file.name}}</span>
+                        </div>
+                    </div>
+                    <div class="tableBodySize">
+                        {% if file.size > 1024 %}
+                            {% if file.size > 1024*1024 %}
+                                {{ (file.size/1024*1024)|int }} GB
+                            {% else %}
+                                {{ (file.size/1024)|int }} MB
+                            {% endif %}
+                        {% else %}
+                            {{ (file.size)|int }} KB
+                        {% endif %}
+                    </div>
+                    <div class="tableBodyDate">
+
+                        {{ file.date.strftime('%Y-%m-%d') }}
+                    </div>
+                    <!-- <div class="tableBodyMobDots">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-file-download"></i>
+                                        Download</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-link"></i> Copy Link</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cloud-upload-alt"></i> Move
+                                        to Drive</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            {% else %}
+            <div class="tableBody">
+                <div class="tableRow">
+                    <div class="tableBodyName">
+                        <!-- <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                    style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div> -->
+                        {% if file.splited %}
+
+                        <div class="nameIcon" onclick="location.href='/files/subfiles/{{file.id}}'">
+                            <span class="{{file.content_type}}Icon"></span>
+                            <span id="tableBodyName"> {{file.name}} </span>
+                        </div>
+                        {% else %}
+                        <div class="nameIcon">
+                            <span class="{{file.content_type}}Icon"></span>
+                            <span id="tableBodyName"> {{file.name}} </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="tableBodySize">
+                        {% if file.size > 1024 %}
+                            {% if file.size > 1024*1024 %}
+                                {{ (file.size/1024*1024)|int }} GB
+                            {% else %}
+                                {{ (file.size/1024)|int }} MB
+                            {% endif %}
+                        {% else %}
+                            {{ (file.size)|int }} KB
+                        {% endif %}
+                    </div>
+                    <div class="tableBodyDate">
+                        {{ file.date.strftime('%Y-%m-%d') }}
+                    </div>
+                    <div class="tableBodyMobDots">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {% if file.splited %}
+                                <li><a class="dropdown-item" href="/files/subfiles/{{file.id}}"><i class="fas fa-folder-open"></i>  Open</a></li>
+
+                                {% if "pdf" in file.content_type or "video" in file.content_type %}
+                                <li><a class="dropdown-item" href="/files/view/{{file.id}}"><i class="fas fa-eye"></i> View</a></li>
+                                {% endif %}
+
+                                {% else %}
+                                <li><a class="dropdown-item" href="/download/{{file.id}}"><i class="fas fa-file-download"></i>
+                                        Download</a></li>
+
+                                {% if "pdf" in file.content_type or "video" in file.content_type %}
+                                <li><a class="dropdown-item" href="/files/view/{{file.id}}"><i class="fas fa-eye"></i> View</a></li>
+                                {% endif %}
+
+                                <li><a class="dropdown-item" href="/get_link/{{file.id}}"><i class="fas fa-link"></i> Copy Link</a></li>
+				<li><a class="dropdown-item" href="/files/delete/{{file.id}}"><i class="fas fa-trash-alt"></i> Delete</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+
+{% endblock %}

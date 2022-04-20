@@ -1,0 +1,32 @@
+{% extends 'file_base.html' %}
+{% block css %}
+{% endblock %}
+{% block content %}
+    <br>
+     <div class="formMain d-flex justify-center align-items-center">
+        <div class="formSection my-5 text-center container bg-body rounded shadow  p-4" style="max-width: 600px;">
+            <h4 class="display-4">Share Link</h4>
+            <div class="formContainer text-start mt-4">
+                <form>
+                    <div class="mb-4">
+                        <label for="url" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="myInput" value="{{link}}" readonly>
+                    </div>
+                    
+                    <button class="btn " style="background: #a349a4;color: aliceblue;" onclick="myFunction()">Copy To Clipboard</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Link Copied");
+}
+</script>
+ 
+{% endblock %}

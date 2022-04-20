@@ -1,0 +1,72 @@
+{% extends 'file_base.html' %}
+{% block css %}
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+{% endblock%}
+{% block content %}
+ <main><br>
+        <div class="mainTableContainer">
+            
+            <div class="tableHeader">
+                <div class="leftCol">
+                    <a href="/files"><button class="btn btn-secondary">Back</button></a>
+                </div>
+                
+            </div>
+            <div class="tableContainer">
+
+                <div class="tableHead">
+                    <div class="tableName">Name</div>
+                    <div class="tableSize"><center>Size</center></div>
+                    <div class="tableDate">Date Modified</div>
+                    <div class="tableMobMore">Option</div>
+                </div>
+            </div>
+            {% for file in files %}
+            <div class="tableBody">
+                <div class="tableRow">
+                    <div class="tableBodyName">
+                        <div class="nameIcon">
+                            <span class="{{file.content_type}}Icon"></span>
+                            <span id="tableBodyName"> {{file.name}} </span>
+                        </div>
+                    </div>
+                    <div class="tableBodySize">
+                        {% if file.size > 1024 %}
+                            {% if file.size > 1024*1024 %}
+                                {{ (file.size/1024*1024)|int }} GB
+                            {% else %}
+                                {{ (file.size/1024)|int }} MB
+                            {% endif %}
+                        {% else %}
+                            {{ (file.size)|int }} KB
+                        {% endif %}
+                    </div>
+                    <div class="tableBodyDate">
+                        {{ file.date.strftime('%Y-%m-%d') }}
+                    </div>
+                    <div class="tableBodyMobDots">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="/subfiles/download/{{file.id}}"><i class="fas fa-file-download"></i>
+                                        Download</a></li>
+                                <li><a class="dropdown-item" href="/subfiles/get_link/{{file.id}}"><i class="fas fa-link"></i> Copy Link</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cloud-upload-alt"></i> Move
+                                        to Drive</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+
+{% endblock %}

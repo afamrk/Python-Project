@@ -1,0 +1,162 @@
+
+#submit { 
+         background-color: #b43cc4; 
+         width: 20%;
+          color: rgb(255, 255, 255); 
+          padding: 15px; 
+          margin: 10px 0px; 
+          border: none; 
+          cursor: pointer; 
+          border-radius:4px;
+
+           } 
+ 
+      input[type=password]{ 
+          width: 85%; 
+          margin: 8px 0;
+          padding: 12px 20px; 
+          display: inline-block; 
+          border: 1px solid rgb(230, 230, 230); 
+          box-sizing: border-box; 
+          border-radius:4px;
+        }
+       
+     
+.container { 
+          padding: 25px; 
+          background-color: rgb(255, 255, 255);
+          margin-left: 311px;
+          margin-right: 412px;
+          height: 390px;
+          
+
+             
+}
+th {
+    text-align: inherit;
+    padding-top: -2px;
+}
+
+
+
+.heading{
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 50px;
+      
+}
+
+footer{
+    text-align: center;
+}
+footer a{
+    text-decoration: none;
+    padding-top: 100px;
+}
+
+@media only screen and (max-width: 2440px){
+    .container{width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+    }
+    #button{
+                        width: 49%;
+                    }
+    }
+@media only screen and (max-width: 1440px){
+    .container{width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+    }
+    #button{
+                        width: 49%;
+                    }
+    }
+    @media only screen and (max-width: 1200px){
+
+.container{width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+    }
+    #submit{
+              width: 49%;
+                    }
+        }
+    
+    @media only screen and (max-width: 1024px){
+
+        .container{
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+                    }
+          #submit{
+                    width: 49%;
+                    }
+        }
+        @media only screen and (max-width: 900px){
+            #submit{
+                width: 42%;
+            
+            }
+            .container{
+                width: 80%;
+                height: 350px;
+                margin-left: auto;
+                margin-right: auto;
+                }
+            }
+            @media only screen and (max-width: 768px){
+                .container{
+                width: 80%;
+                height: 350px;
+                margin-left: auto;
+                margin-right: auto;
+                }
+                input[type=password]{ 
+                          margin-left: auto;
+                            margin-right: auto;
+                         width: 95%;
+                        }
+                }
+                @media only screen and (max-width: 500px){
+                    
+                     .container{
+                            height: 350px;
+                            width: 90%;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    #submit{
+                        margin-left: 1px;
+                        width: 89%;
+                    }
+                    input[type=password]{ 
+                          margin-left: auto;
+                            margin-right: auto;
+                         width: 95%;
+                        }
+                    }
+                    @media only screen and (max-width: 304px){
+                        .container{
+                            height: 350px;
+                            width: 90%;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                        #submit{
+                            width: 82%;
+                        }
+
+                        input[type=password]{ 
+                          margin-left: auto;
+                            margin-right: auto;
+                         width: 95%;
+                        }
+
+                        }
+                        

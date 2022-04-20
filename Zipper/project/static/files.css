@@ -1,0 +1,92 @@
+
+  body{
+    background-color: #f7f7f7
+  }
+
+	li {
+    list-style-type: none;
+}
+.create-folder{
+  display: inline-block;
+  width: 117px;
+  margin-left: 40px;
+  border: 0;
+  clear: none;
+  margin-top: -3px;
+  height: 36px;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+  font-size: 9pt;
+  margin-bottom: -2px;
+  float: right;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+}
+#files-search-input {
+  display: inline-block;
+  width: auto;
+  border: 0;
+  clear: none;
+  margin-top: -3px;
+  height: 26px;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-shadow: none;
+  background-color: white;
+  border: 1px solid #cacaca;
+  font-size: 9pt;
+  margin-bottom: -2px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  padding-left: 6px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+}
+#files-search-input:focus{
+  border: 1px solid #0082e6;
+}
+#files-search-img{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: 4px 4px 4px 4px;
+  right: 0;
+  top: 0;
+}
+#customers {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 18px;
+
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f3f3f3;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #a349a4;
+  color: white;
+}
+.search-btn-form{
+  width: 25px;
+  height: 24px;
+  border: 3px;
+  background-color: #fff;
+}
+

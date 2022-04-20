@@ -1,0 +1,26 @@
+{% extends 'file_base.html' %}
+
+{% block content %}
+<style>
+center{
+  height: 500px;
+}
+.textLayer{
+  height: 500px;
+}
+iframe{
+  height: 650px;
+}
+
+</style>
+    <main class='textLayer'>
+    <br>
+    <br>
+    <br>
+    <center>
+      <h1>PDF Viewer</h1>
+    <iframe src="/files/pdf/{{id}}" width="90%">
+    </iframe>
+    </center>
+    </main>
+{% endblock %}

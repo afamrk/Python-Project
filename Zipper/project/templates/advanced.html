@@ -1,0 +1,34 @@
+{% extends 'file_base.html' %}
+{% block content %}
+<br><br>
+<div class="formMain d-flex justify-center align-items-center">
+        <div class="formSection my-5 text-center container bg-body rounded shadow  p-4" style="max-width: 600px;">
+            <h4 class="display-4">Advanced Option</h4>
+            <div class="formContainer text-start mt-4">
+                <form method="POST">
+                	{{advanced_form.hidden_tag()}}
+                    <div class="mb-4">
+                        <label for="url" class="form-label">URL</label>
+                        {{advanced_form.link}}
+                    </div>
+                    <div class="mb-4">
+                        <label for="url" class="form-label">Compression Level</label>
+                        {{advanced_form.level}}
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="url" class="form-label">Split Volume</label>
+                            {{advanced_form.split}}
+                        </select> </div>
+                    <div class="mb-4">
+                        <label for="url" class="form-label">Archive Format</label>
+                            {{advanced_form.format}}
+                        </select>
+                    </div>
+                    <button class="btn " style="background: #a349a4;color: aliceblue;"  type='submit'>Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
