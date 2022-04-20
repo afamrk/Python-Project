@@ -13,8 +13,8 @@ environment
 ➢ A feature of split downloading is made available, that allows user to split the files to
 their desired sizes.
 
-# DEMO
-
+# SCREEN SHOT
+![screenshot](./screenshot.png "Zipper screen shot")
 
 
 
