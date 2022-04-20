@@ -16,5 +16,6 @@ their desired sizes.
 # SCREEN SHOT
 ![screenshot](./screenshot.png "Zipper screen shot")
 
-<img src="https://media1.giphy.com/media/hDAl6KdJ5M8gnir1XS/giphy.gif">
+# DEMO
+<img src="https://github.com/afamrk/Python-Project/raw/main/Zipper/giphy.gif" width="900" height="600">
 
