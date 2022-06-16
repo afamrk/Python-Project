@@ -21,3 +21,6 @@ login_manager.login_view = 'user.login'
 
 from project.user.views import user
 app.register_blueprint(user, url_prefix='/user')
+
+from project.chat.views import chat
+app.register_blueprint(chat, url_prefix='/chat')

@@ -4,8 +4,7 @@ from flask import render_template, redirect, session, Blueprint, url_for, reques
 from project import db,app
 from flask_login import login_user, login_required, logout_user, current_user
 from functools import wraps
-from project import socketio as sio
-from flask_socketio import join_room,rooms
+
 
 user = Blueprint('user', __name__, template_folder='templates')
 
@@ -68,34 +67,8 @@ def welcome():
     room_id = request.args.get('room')
     if room_id:
         session['room_id'] = room_id
-        return redirect(url_for('user.chat'))
+        return redirect(url_for('chat.chat_page'))
     return render_template('user/welcome_user.html')
 
-@user.route('/chat')
-@login_required
-def chat():
-    room_id = session.get('room_id')
-    if not room_id:
-        return redirect(url_for('user.welcome'))
-    return render_template('user/chat.html', room=room_id)
 
-
-@sio.event
-def room_join(data):
-    join_room(data['room_id'])
-    sio.emit('user_join_alert', data)
-
-@sio.event
-def send_message(data):
-    sio.emit('recive_message', data, to=data['room_id'])
-
-@sio.event
-def disconnect():
-    sid = request.sid
-    print('#####')
-    room = rooms(sid)
-    room.remove(sid)
-    room = room[0]
-    print('#####')
-    sio.emit('user_left_alert', current_user.username, room=room)
 
