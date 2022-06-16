@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <p>Congrats! You are logged in!</p>
+    <h1>current user = {{ current_user.username }}</h1>
+</div>
+
+<div class="jumbotron">
+    <form>
+        <label> Enter room id: </label>
+        <input type="text" name="room">
+        <button type="submit">submit</button>
+    </form>
+</div>
+
+{% endblock %}
